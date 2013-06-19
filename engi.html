@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		<title>three.js css3d - periodic table</title>
+		<title>Engineer homepage proto</title>
 		<style>
 			html, body {
 				height: 100%;
@@ -108,7 +108,7 @@
 		<script type="text/javascript" src="js/backbone-min.js"></script>
 		<script src="js/three.min.js"></script>
 		<script src="js/tween.min.js"></script>
-		<script src="js/TrackballControls.js"></script>
+\
 		<script src="js/CSS3DRenderer.js"></script>
 
 		<div id="container"></div>
@@ -236,13 +236,26 @@
 				[ "Uuo", "Ununoctium", "(294)", 18, 7 ]
 			];
 
-			var newTable = [];
-			for(i = 0; i<= table.length; i++){
-				var element=[];
-				element.push(table[i][3]);
-				element.push(table[i][4]);
-				newTable.push(element);
-			};	
+			publicEvents = [
+			{ name: "tech events", info: "blah"},
+			{ name: "mech events", info: "blah-mech-blah"},
+			{ name: "mech events", info: "blah-mech-blah"},
+			{ name: "mech events", info: "blah-mech-blah"},
+			{ name: "mech events", info: "blah-mech-blah"},
+			{ name: "mech events", info: "blah-mech-blah"},
+			{ name: "mech events", info: "blah-mech-blah"},
+			{ name: "mech events", info: "blah-mech-blah"},
+			{ name: "mech events", info: "blah-mech-blah"},
+			{ name: "mech events", info: "blah-mech-blah"},
+			{ name: "mech events", info: "blah-mech-blah"},
+			{ name: "mech events", info: "blah-mech-blah"},
+			{ name: "mech events", info: "blah-mech-blah"},
+			{ name: "mech events", info: "blah-mech-blah"},
+			{ name: "mech events", info: "blah-mech-blah"},
+			{ name: "mech events", info: "blah-mech-blah"},
+			{ name: "mech events", info: "blah-mech-blah"},
+			];
+
 
 		</script>
 		<script type="text/javascript">
@@ -266,6 +279,7 @@
 					"click" : "selected"
 				},	
 				initialize: function(){
+					this.bind("unselect", this.unselected);
 					this.object =  new THREE.CSS3DObject( this.el );
 					this.el.style.backgroundColor = 'rgba(0,127,127,' + ( Math.random() * 0.5 + 0.25 ) + ')';
 					this.$el.html(this.model.toJSON().name);
@@ -283,8 +297,14 @@
 				},
 
 				selected: function(){
-					console.log(this.model.toJSON().name + " is being clicked")
+					console.log(this.model.toJSON().name + " is being clicked");
+					App.eventsCollectionView.trigger("itemSelected", this);
+				},
+				unselected: function(){
+					console.log(this.model.toJSON().name + " is being unselected");
+					this.$el.fadeOut();
 				}
+
 
 			});
 
@@ -298,8 +318,9 @@
 				camera : new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 5000 ),
 				scene: new THREE.Scene(),
 				renderer: new THREE.CSS3DRenderer(),
-				
+				views: [],
 				initialize: function(){
+					this.bind("itemSelected", this.itemSelected, this);
 					this.camera.position.z = 00;					
 					this.render();
 
@@ -329,19 +350,40 @@
 					this.renderer.domElement.style.position = 'absolute';
 					this.el.appendChild(this.renderer.domElement);
 
-					this.controls = new THREE.TrackballControls( this.camera, this.renderer.domElement );
-					this.controls.rotateSpeed = 0.5;
-					this.controls.addEventListener( 'change', this.renderScene );
 					this.transform( this.targets.sphere, 5000 );
 						
 				},
 
+				//custom events
+				itemSelected: function(eventItem){
+					console.log(eventItem.object + "selected disabling others");
+					console.log(eventItem.object + "selected disabling others");
+					this.objects = eventItem.object;
+					for( i = 0; i<= this.scene.__objects.length; i ++){
+						var object = this.scene.__objects[i];
+						if (  object !== eventItem.object){ 
+							this.scene.remove(object);
+							_.each(this.views,function(eventView){
+								
+									if (eventItem !== eventView){
+										
+										console.log(this);
+										eventView.trigger("unselect");
+
+									}
+								
+							});
+							 }
+						
+					};
+				},
 				render: function(event){
 					this.collection.each(function(eventModel){
 						var eventView = new App.Views.EventView({model: eventModel});
 						eventView.render();
 						this.scene.add(eventView.object);
-						this.objects.push( eventView.object )
+						this.objects.push( eventView.object );
+						this.views.push(eventView);
 
 					}, this);
 					console.log("collections view has completed rendering");
@@ -385,122 +427,29 @@
 			});
 
 			
-			publicEvents = [
-			{ name: "tech events", info: "blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			];
+			
+			App.init = function(){
+				App.eventsCollection = new App.Collections.Events(publicEvents);
+				App.eventsCollectionView = new App.Views.EventsCollectionView({collection: App.eventsCollection}); 
+				var i = 0;
+				function animate(t ) {
+					if(i <= 300){ App.eventsCollectionView.camera.position.z -= 8};
+					i+= 1;
+					App.eventsCollectionView.camera.lookAt(App.eventsCollectionView.scene.position);
+					
+					App.eventsCollectionView.renderScene();
+					requestAnimationFrame( animate );
+					TWEEN.update();
+					
 
-
-			var eventsCollection = new App.Collections.Events(publicEvents);
-			var eventsCollectionView = new App.Views.EventsCollectionView({collection: eventsCollection}); 
-			var i = 0;
-			function animate(t) {
-				if(i <= 300){ eventsCollectionView.camera.position.z -= 8};
-				i+= 1;
-				eventsCollectionView.camera.lookAt(eventsCollectionView.scene.position);
+				};
 				
-				eventsCollectionView.renderScene();
-				requestAnimationFrame( animate );
-				TWEEN.update();
-				
+				animate(new Date().getTime());
 
-			};
-			animate(new Date().getTime());
+			} 
+			
+
+			App.init();
 		</script>
 	</body>
 </html>
