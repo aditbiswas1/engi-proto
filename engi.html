@@ -10,7 +10,7 @@
 			}
 
 			body {
-				background-color: #000000;
+				background-color: #FFFFFF;
 				margin: 0;
 				font-family: Arial;
 				overflow: hidden;
@@ -20,17 +20,6 @@
 				color: #ffffff;
 			}
 
-			#info {
-				position: absolute;
-				width: 100%;
-				color: #ffffff;
-				padding: 5px;
-				font-family: Monospace;
-				font-size: 13px;
-				font-weight: bold;
-				text-align: center;
-				z-index: 1;
-			}
 
 			#menu {
 				position: absolute;
@@ -107,6 +96,7 @@
 		<script type="text/javascript" src="js/underscore-min.js"></script>
 		<script type="text/javascript" src="js/backbone-min.js"></script>
 		<script src="js/three.min.js"></script>
+		<script src="js/controls/TrackballControls.js"></script>
 		<script src="js/tween.min.js"></script>
 \
 		<script src="js/CSS3DRenderer.js"></script>
@@ -259,6 +249,12 @@
 
 		</script>
 		<script type="text/javascript">
+
+			//custom tween apis
+
+			var spinTween = function( spingObject){
+
+			}
 			var App = {};
 			App.Models = {};
 			App.Collections = {};
@@ -281,7 +277,7 @@
 				initialize: function(){
 					this.bind("unselect", this.unselected);
 					this.object =  new THREE.CSS3DObject( this.el );
-					this.el.style.backgroundColor = 'rgba(0,127,127,' + ( Math.random() * 0.5 + 0.25 ) + ')';
+					this.el.style.backgroundColor = 'rgba(0,50,127,' + ( Math.random() * 0.5 + 0.25 ) + ')';
 					this.$el.html(this.model.toJSON().name);
 					this.object.position.x = Math.random() * 4000 - 2000;
 					this.object.position.y = Math.random() * 4000 - 2000;
@@ -376,6 +372,8 @@
 							 }
 						
 					};
+
+
 				},
 				render: function(event){
 					this.collection.each(function(eventModel){
