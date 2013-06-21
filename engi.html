@@ -96,7 +96,7 @@
 		<script type="text/javascript" src="js/underscore-min.js"></script>
 		<script type="text/javascript" src="js/backbone-min.js"></script>
 		<script src="js/three.min.js"></script>
-		<script src="js/controls/TrackballControls.js"></script>
+		<script src="js/TrackballControls.js"></script>
 		<script src="js/tween.min.js"></script>
 \
 		<script src="js/CSS3DRenderer.js"></script>
@@ -246,6 +246,12 @@
 			{ name: "mech events", info: "blah-mech-blah"},
 			];
 
+			subevents = [
+				{name: "subEvent1", info: "blah blah this is subevent"},
+				{name: "subEvent2", info: "blah blah this is subevent2"},
+				{name: "subEvent3", info: "blah blah this is subevent3"},
+				{name: "subEvent4", info: "blah blah this is subevent4"},
+			];
 
 		</script>
 		<script type="text/javascript">
@@ -262,6 +268,12 @@
 
 			App.Models.Event = Backbone.Model.extend({
 
+			});
+			App.Models.SubEvent = Backbone.Model.extend({
+
+			});
+			App.Collections.Subevents = Backbone.Collection.extend({
+				model: App.Models.SubEvent
 			});
 
 			App.Collections.Events = Backbone.Collection.extend({
@@ -295,15 +307,53 @@
 				selected: function(){
 					console.log(this.model.toJSON().name + " is being clicked");
 					App.eventsCollectionView.trigger("itemSelected", this);
+
 				},
 				unselected: function(){
 					console.log(this.model.toJSON().name + " is being unselected");
-					this.$el.fadeOut();
+					new TWEEN.Tween(this.object.rotation ).to( {
+						x: Math.random() * 2 * Math.PI,
+						z: Math.random() * 2 * Math.PI }, 5000 )
+					.easing( TWEEN.Easing.Elastic.Out).start();
+					this.$el.fadeOut(2000);
+
+
 				}
 
 
 			});
+			App.Views.Subevent = Backbone.View.extend({
+				tagName: "div",
+				className: "element",
+				initialize: function(){
+					
+					this.object =  new THREE.CSS3DObject( this.el );
+					this.el.style.backgroundColor = 'rgba(0,50,127,' + ( Math.random() * 0.5 + 0.25 ) + ')';
+					this.$el.html(this.model.toJSON().name);
+					this.object.position.x = Math.random() * 4000 - 2000;
+					this.object.position.y = Math.random() * 4000 - 2000;
+					this.object.position.z = Math.random() * 4000 - 2000;
+					console.log(this.model.toJSON().name + "sub view instantiated");
+				}
+			});
 
+			App.Views.SubeventsCollectionView = Backbone.View.extend({
+				objects: [],
+				views: [],
+				initialize: function(){
+					this.render();
+				},
+				render: function(event){
+					this.collection.each(function(subevent){
+						var subeventView = new App.Views.EventView({model: subevent});
+						
+						this.objects.push( subeventView.object );
+						this.views.push(subeventView);
+
+					}, this);
+					return this;
+				}
+			});
 			App.Views.EventsCollectionView = Backbone.View.extend({
 				el: $("#container"),
 				objects: [],
@@ -314,10 +364,12 @@
 				camera : new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 5000 ),
 				scene: new THREE.Scene(),
 				renderer: new THREE.CSS3DRenderer(),
+				
 				views: [],
 				initialize: function(){
 					this.bind("itemSelected", this.itemSelected, this);
-					this.camera.position.z = 00;					
+					this.camera.position.z = 1800;
+
 					this.render();
 
 					var vector = new THREE.Vector3();
@@ -345,7 +397,9 @@
 					this.renderer.setSize( window.innerWidth, window.innerHeight );
 					this.renderer.domElement.style.position = 'absolute';
 					this.el.appendChild(this.renderer.domElement);
-
+					this.controls = new THREE.TrackballControls( this.camera, this.renderer.domElement );
+					this.controls.rotateSpeed = 0.5;
+					this.controls.addEventListener( 'change', this.renderScene );
 					this.transform( this.targets.sphere, 5000 );
 						
 				},
@@ -354,7 +408,7 @@
 				itemSelected: function(eventItem){
 					console.log(eventItem.object + "selected disabling others");
 					console.log(eventItem.object + "selected disabling others");
-					this.objects = eventItem.object;
+					this.objects = [eventItem.object];
 					for( i = 0; i<= this.scene.__objects.length; i ++){
 						var object = this.scene.__objects[i];
 						if (  object !== eventItem.object){ 
@@ -370,11 +424,73 @@
 								
 							});
 							 }
-						
-					};
+				/*	var camera = this.camera;
+					new TWEEN.Tween( camera.position )
+							.to( {x: eventItem.object.position.x,
+								  y: eventItem.object.position.y,
+								  z: eventItem.object.position.z -500,
+							},500)
+							.easing( TWEEN.Easing.Exponential.InOut ).onUpdate(function(){
+								camera.lookAt(eventItem.object.position);
+							}).onComplete(function(){
+								camera.lookAt(eventItem.object.position);
+							})
+							.start();
 
+					};*/
 
-				},
+					/*new TWEEN.Tween(this.camera.position).to({
+					    x: eventItem.object.position.x,
+					    y: eventItem.object.position.y,
+					    z: 1
+					}).easing(TWEEN.Easing.Linear.None).onUpdate(function () {
+					    this.camera.lookAt(this.camera.target);
+					}).onComplete(function () {
+					    this.camera.lookAt(eventItem.object.position);
+					}).start();
+
+					new TWEEN.Tween(this.camera.target).to({
+					    x: eventItem.object.position.x,
+					    y: eventItem.object.position.y,
+					    z: 0
+					}).easing(TWEEN.Easing.Linear.None).onUpdate(function () {
+					}).onComplete(function () {
+					    this.camera.lookAt(eventItem.object.position);
+					}).start();
+				*/
+				}
+
+				//start the subview
+				this.subeventsCollectionView = new App.Views.SubeventsCollectionView( {collection : new App.Collections.Subevents(subevents)} );
+				var mainView = this;
+				_.each(App.eventsCollectionView.subeventsCollectionView.objects, function(object){
+				 this.scene.add(object);
+				 mainView.objects.push(object);
+				});
+				console.log(this.objects);
+				console.log(App.eventsCollectionView.objects);
+				var x = [];
+				for ( var i = 0; i < this.objects.length; i ++ ) {
+
+					var item = table[ i ];
+
+					var object = new THREE.Object3D();
+					object.position.x = ( ( i % 5 ) * 400 ) - 800;
+					object.position.y = ( - ( Math.floor( i / 5 ) % 5 ) * 400 ) + 80;
+					object.position.z = ( Math.floor( i / 25 ) ) + 1300;
+
+					x.push( object );
+
+				}
+				
+				this.transform(x, 3000);
+
+			},
+			updateControls: function(){
+				controls = this.controls;
+				controls.update();
+			},
+
 				render: function(event){
 					this.collection.each(function(eventModel){
 						var eventView = new App.Views.EventView({model: eventModel});
@@ -417,8 +533,11 @@
 
 				
 				renderScene: function(){
+					renderer = App.eventsCollectionView.renderer;
+					camera = App.eventsCollectionView.camera;
+					scene = App.eventsCollectionView.scene;
+					renderer.render( scene, camera );
 
-				this.renderer.render( this.scene, this.camera );
 				},
 
 				
@@ -428,17 +547,18 @@
 			
 			App.init = function(){
 				App.eventsCollection = new App.Collections.Events(publicEvents);
+				
 				App.eventsCollectionView = new App.Views.EventsCollectionView({collection: App.eventsCollection}); 
 				var i = 0;
 				function animate(t ) {
-					if(i <= 300){ App.eventsCollectionView.camera.position.z -= 8};
+					/*if(i <= 300){ App.eventsCollectionView.camera.position.z -= 8};
 					i+= 1;
-					App.eventsCollectionView.camera.lookAt(App.eventsCollectionView.scene.position);
+					App.eventsCollectionView.camera.lookAt(App.eventsCollectionView.scene.position);*/
 					
 					App.eventsCollectionView.renderScene();
 					requestAnimationFrame( animate );
 					TWEEN.update();
-					
+					App.eventsCollectionView.updateControls();
 
 				};
 				
