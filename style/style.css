@@ -27,7 +27,6 @@ body:before
 #comingSoon{
 	font-family: 'Permanent Marker', cursive;
 	position:fixed;
-	z-index:2;
 }
 
 a {
