@@ -1,5 +1,5 @@
 publicEvents = [
-	{ name: "tech events", info: "blah"},
+	{ name: "chemical events", info: "blah"},
 	{ name: "mech events", info: "blah-mech-blah"},
 	{ name: "mech events", info: "blah-mech-blah"},
 	{ name: "mech events", info: "blah-mech-blah"},

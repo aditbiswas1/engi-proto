@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<title>Engineer 2013</title>
 		<link rel="stylesheet" href="style.css" type="text/css"/>
+		<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,500' rel='stylesheet' type='text/css'>
 	</head>
 	<body>
 		<script type="text/javascript" src="js/jquery-1.10.1.min.js" ></script>
@@ -54,8 +55,11 @@
 					this.bind("unselect", this.unselected);
 					
 					this.object =  new THREE.CSS3DObject( this.el );
-					this.el.style.backgroundColor = 'rgba(0,255,127,' + ( Math.random() * 0.5 + 0.25 ) + ')';
-					this.$el.html(this.model.toJSON().name);
+					///this.el.style.backgroundColor = 'rgba(0,255,127,' + ( Math.random() * 0.5 + 0.25 ) + ')';
+					this.el.style.backgroundColor = 'rgba(100,100,100,' + ( Math.random() * 0.5 + 0.25 ) + ')';
+					// this is only temporary naming  
+					name=this.model.toJSON().name;
+					this.$el.html(name.toUpperCase().split(" ").join("<br />"));
 					this.object.position.x = Math.random() * 4000 - 2000;
 					this.object.position.y = Math.random() * 4000 - 2000;
 					this.object.position.z = Math.random() * 4000 - 2000;
@@ -160,7 +164,7 @@
 						var theta = Math.sqrt( l * Math.PI ) * phi;
 
 						var object = new THREE.Object3D();
-						var radius = 1000;
+						var radius = 1200;
 						object.position.x = radius * Math.cos( theta ) * Math.sin( phi );
 						object.position.y = radius * Math.sin( theta ) * Math.sin( phi );
 						object.position.z = radius * Math.cos( phi );
@@ -180,7 +184,7 @@
 					this.controls = new THREE.TrackballControls( this.camera, this.renderer.domElement );
 					this.controls.rotateSpeed = 0.5;
 					this.controls.addEventListener( 'change', this.renderScene );
-					this.transform( this.targets.sphere, 5000 );
+					this.transform( this.targets.sphere, 2000 );
 						
 				},
 
