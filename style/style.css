@@ -7,6 +7,8 @@ body {
 	margin: 0;
 	font-family: Arial;
 	overflow: hidden;
+	background:url(bg1.png);
+	background-repeat:repeat;
 }
 body:before 
 { 
@@ -20,6 +22,12 @@ body:before
    -webkit-box-shadow: 0px 0px 10px rgba(0,0,0,.8);
    -moz-box-shadow: 0px 0px 10px rgba(0,0,0,.8);
    box-shadow: 0px 0px 10px rgba(0,0,0,.8);
+}
+
+#comingSoon{
+	font-family: 'Permanent Marker', cursive;
+	position:fixed;
+	z-index:2;
 }
 
 a {
@@ -43,16 +51,18 @@ a {
 	color: #000;
 	padding-top:100px;
 	font-family: 'Ubuntu', sans-serif;
+	font-family: 'Permanent Marker', cursive;
 	text-align:center;
 	font-size:2em;
-	box-shadow: 0px 0px 20px #eee;
+	box-shadow: 0px 0px 20px #555;
 	border: 1px solid rgba(127,255,255,0.25);
 	cursor: pointer;
 }
 
 .element:hover {
-	box-shadow: 0px 0px 20px rgba(0,255,255,0.75);
-	border: 1px solid rgba(127,255,255,0.75);
+	color:#fb8a04;
+	box-shadow: 0px 0px 20px rgba(251,138,4,0.75);
+	border: 1px solid rgba(251,138,4,0.75);
 }
 
 .element .number {

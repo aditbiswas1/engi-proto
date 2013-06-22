@@ -4,8 +4,8 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<title>Engineer 2013</title>
-		<link rel="stylesheet" href="style.css" type="text/css"/>
-		<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,500' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="style/style.css" type="text/css"/>
 	</head>
 	<body>
 		<script type="text/javascript" src="js/jquery-1.10.1.min.js" ></script>
@@ -16,12 +16,18 @@
 		<script src="js/tween.min.js"></script>
 		<script src="js/CSS3DRenderer.js"></script>
 
+		<div id="comingSoon">
+			<img src="images/engilogo.png" style="width:200px;height:auto;"/>
+			<h1>Coming Soon</h1>
+		</div>
 		<div id="container"></div>
 
 		<script src="events.js"></script>
 		<script>
 
 			//custom tween apis
+			document.getElementById("comingSoon").style.left=(window.innerWidth/2-100)+"px";
+			document.getElementById("comingSoon").style.top=(window.innerHeight/2-100)+"px";
 
 			var spinTween = function( spingObject){
 
@@ -48,9 +54,10 @@
 			App.Views.EventView = Backbone.View.extend({
 				tagName: "div",
 				className: "element",
-				events: {
+				// For now disable this
+				/*events: {
 					"click": "selected"
-				},
+				},*/
 				initialize: function(){
 					this.bind("unselect", this.unselected);
 					
@@ -164,7 +171,7 @@
 						var theta = Math.sqrt( l * Math.PI ) * phi;
 
 						var object = new THREE.Object3D();
-						var radius = 1200;
+						var radius = 1000;
 						object.position.x = radius * Math.cos( theta ) * Math.sin( phi );
 						object.position.y = radius * Math.sin( theta ) * Math.sin( phi );
 						object.position.z = radius * Math.cos( phi );
