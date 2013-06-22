@@ -3,93 +3,8 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		<title>Engineer homepage proto</title>
-		<style>
-			html, body {
-				height: 100%;
-			}
-
-			body {
-				background-color: #FFFFFF;
-				margin: 0;
-				font-family: Arial;
-				overflow: hidden;
-			}
-
-			a {
-				color: #ffffff;
-			}
-
-
-			#menu {
-				position: absolute;
-				bottom: 20px;
-				width: 100%;
-				text-align: center;
-			}
-
-			.element {
-				width: 140px;
-				height: 180px;
-				box-shadow: 0px 0px 20px rgba(0,255,255,0.5);
-				border: 1px solid rgba(127,255,255,0.25);
-				cursor: default;
-			}
-
-			.element:hover {
-				box-shadow: 0px 0px 20px rgba(0,255,255,0.75);
-				border: 1px solid rgba(127,255,255,0.75);
-			}
-
-				.element .number {
-					position: absolute;
-					top: 20px;
-					right: 20px;
-					font-size: 20px;
-					color: rgba(127,255,255,0.75);
-				}
-
-				.element .symbol {
-					position: absolute;
-					top: 40px;
-					width: 100%;
-					font-size: 70px;
-					text-align: center;
-					color: rgba(255,255,255,0.75);
-					font-weight: bold;
-
-					-webkit-filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.95));
-					-moz-filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.95));
-					-o-filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.95));
-					-ms-filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.95));
-					filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.95));
-				}
-
-				.element .details {
-					position: absolute;
-					top: 125px;
-					width: 100%;
-					font-size: 18px;
-					text-align: center;
-					color: rgba(127,255,255,0.75);
-				}
-
-			button {
-				color: rgba(127,255,255,0.75);
-				background: transparent;
-				outline: 1px solid rgba(127,255,255,0.75);
-				border: 0px;
-				padding: 5px 10px;
-				cursor: pointer;
-			}
-			button:hover {
-				background-color: rgba(0,255,255,0.5);
-			}
-			button:active {
-				color: #000000;
-				background-color: rgba(0,255,255,0.75);
-			}
-		</style>
+		<title>Engineer 2013</title>
+		<link rel="stylesheet" href="style.css" type="text/css"/>
 	</head>
 	<body>
 		<script type="text/javascript" src="js/jquery-1.10.1.min.js" ></script>
@@ -102,47 +17,8 @@
 
 		<div id="container"></div>
 
+		<script src="events.js"></script>
 		<script>
-			publicEvents = [
-			{ name: "tech events", info: "blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			];
-
-			subevents = [
-				{name: "subEvent1", info: "blah blah this is subevent"},
-				{name: "subEvent2", info: "blah blah this is subevent2"},
-				{name: "subEvent3", info: "blah blah this is subevent3"},
-				{name: "subEvent4", info: "blah blah this is subevent4"},
-			];
-
-			
-
-		</script>
-		<script type="text/javascript">
 
 			//custom tween apis
 
