@@ -262,6 +262,7 @@
 				objects: [],
 				targets :  {
 						sphere: [], 
+						helix:[],
 					},
 
 				camera : new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 5000 ),
@@ -278,7 +279,7 @@
 
 					var vector = new THREE.Vector3();
 
-					for ( var i = 0, l = this.objects.length; i < l; i ++ ) {
+					/*for ( var i = 0, l = this.objects.length; i < l; i ++ ) {
 
 						var phi = Math.acos( -1 + ( 2 * i ) / l );
 						var theta = Math.sqrt( l * Math.PI ) * phi;
@@ -295,7 +296,27 @@
 
 						this.targets.sphere.push( object );
 					
-					}
+					}*/
+				for ( var i = 0, l = this.objects.length; i < l; i ++ ) {
+
+					var phi = i * 0.175 + Math.PI;
+
+					var object = new THREE.Object3D();
+					var radius = 1100;
+					
+					object.position.x = radius * Math.sin( phi );
+					object.position.y = - ( i * 8 ) + 250;
+					object.position.z = radius * Math.cos( phi );
+
+					vector.copy( object.position );
+					vector.x *= 2;
+					vector.z *= 2;
+
+					object.lookAt( vector );
+
+					this.targets.helix.push( object );
+
+				}
 
 
 					this.renderer.setSize( window.innerWidth, window.innerHeight );
@@ -304,7 +325,7 @@
 					this.controls = new THREE.TrackballControls( this.camera, this.renderer.domElement );
 					this.controls.rotateSpeed = 0.5;
 					this.controls.addEventListener( 'change', this.renderScene );
-					this.transform( this.targets.sphere, 5000 );
+					this.transform( this.targets.helix, 2000 );
 						
 				},
 
