@@ -4,92 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<title>Engineer homepage proto</title>
-		<style>
-			html, body {
-				height: 100%;
-			}
-
-			body {
-				background-color: #FFFFFF;
-				margin: 0;
-				font-family: Arial;
-				overflow: hidden;
-			}
-
-			a {
-				color: #ffffff;
-			}
-
-
-			#menu {
-				position: absolute;
-				bottom: 20px;
-				width: 100%;
-				text-align: center;
-			}
-
-			.element {
-				width: 140px;
-				height: 180px;
-				box-shadow: 0px 0px 20px rgba(0,255,255,0.5);
-				border: 1px solid rgba(127,255,255,0.25);
-				cursor: default;
-			}
-
-			.element:hover {
-				box-shadow: 0px 0px 20px rgba(0,255,255,0.75);
-				border: 1px solid rgba(127,255,255,0.75);
-			}
-
-				.element .number {
-					position: absolute;
-					top: 20px;
-					right: 20px;
-					font-size: 20px;
-					color: rgba(127,255,255,0.75);
-				}
-
-				.element .symbol {
-					position: absolute;
-					top: 40px;
-					width: 100%;
-					font-size: 70px;
-					text-align: center;
-					color: rgba(255,255,255,0.75);
-					font-weight: bold;
-
-					-webkit-filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.95));
-					-moz-filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.95));
-					-o-filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.95));
-					-ms-filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.95));
-					filter: drop-shadow(0px 0px 20px rgba(0,255,255,0.95));
-				}
-
-				.element .details {
-					position: absolute;
-					top: 125px;
-					width: 100%;
-					font-size: 18px;
-					text-align: center;
-					color: rgba(127,255,255,0.75);
-				}
-
-			button {
-				color: rgba(127,255,255,0.75);
-				background: transparent;
-				outline: 1px solid rgba(127,255,255,0.75);
-				border: 0px;
-				padding: 5px 10px;
-				cursor: pointer;
-			}
-			button:hover {
-				background-color: rgba(0,255,255,0.5);
-			}
-			button:active {
-				color: #000000;
-				background-color: rgba(0,255,255,0.75);
-			}
-		</style>
+		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
 		<script type="text/javascript" src="js/jquery-1.10.1.min.js" ></script>
@@ -97,50 +12,42 @@
 		<script type="text/javascript" src="js/backbone-min.js"></script>
 		<script src="js/three.min.js"></script>
 		<script src="js/TrackballControls.js"></script>
+		<script src="js/helixTrackControls.js"></script>
 		<script src="js/tween.min.js"></script>
 		<script src="js/CSS3DRenderer.js"></script>
 
 		<div id="container"></div>
 
 		<script>
-			publicEvents = [
-			{ name: "tech events", info: "blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			{ name: "mech events", info: "blah-mech-blah"},
-			];
+publicEvents = [
+	{ name: "chemical events", info: "blah"},
+	{ name: "biz events", info: "blah-mech-blah"},
+	{ name: "mba events", info: "blah-mech-blah"},
+	{ name: "civil events", info: "blah-mech-blah"},
+	{ name: "electrical events", info: "blah-mech-blah"},
+	{ name: "simplineer", info: "blah-mech-blah"},
+	{ name: "general events", info: "blah-mech-blah"},
+	{ name: "astro events", info: "blah-mech-blah"},
+	{ name: "online events", info: "blah-mech-blah"},
+	{ name: "gaming events", info: "blah-mech-blah"},
+	{ name: "mining events", info: "blah-mech-blah"},
+	{ name: "metallugry events", info: "blah-mech-blah"},
+	{ name: "comp events", info: "blah-mech-blah"},
+	{ name: "mech events", info: "blah-mech-blah"},
+	{ name: "tech speak", info: "blah-mech-blah"},
+	{ name: "campus ambassador", info: "blah-mech-blah"},
+	{ name: "technites", info: "blah-mech-blah"},
+	{ name: "engi connect", info: "blah-mech-blah"},
+	{ name: "workshops", info: "blah-mech-blah"},
+	{ name: "sce", info: "blah-mech-blah"},
+	];
 
-			subevents = [
-				{name: "subEvent1", info: "blah blah this is subevent"},
-				{name: "subEvent2", info: "blah blah this is subevent2"},
-				{name: "subEvent3", info: "blah blah this is subevent3"},
-				{name: "subEvent4", info: "blah blah this is subevent4"},
-			];
-
-			
-
+subevents = [
+	{name: "subEvent1", info: "blah blah this is subevent"},
+	{name: "subEvent2", info: "blah blah this is subevent2"},
+	{name: "subEvent3", info: "blah blah this is subevent3"},
+	{name: "subEvent4", info: "blah blah this is subevent4"},
+];
 		</script>
 		<script type="text/javascript">
 
@@ -178,13 +85,13 @@
 					this.bind("unselect", this.unselected);
 					
 					this.object =  new THREE.CSS3DObject( this.el );
-					this.el.style.backgroundColor = 'rgba(0,255,127,' + ( Math.random() * 0.5 + 0.25 ) + ')';
-					this.$el.html(this.model.toJSON().name);
+					this.el.style.backgroundColor = 'rgba(0,55,127,' + ( Math.random() * 0.5 + 0.25 ) + ')';
+					// setting text here
+					this.$el.html(this.model.toJSON().name+"<br /><br />"+this.model.toJSON().info);
+					// this will put elements in random positions
 					this.object.position.x = Math.random() * 4000 - 2000;
 					this.object.position.y = Math.random() * 4000 - 2000;
 					this.object.position.z = Math.random() * 4000 - 2000;
-
-					//cube 
 
 				},
 				render: function(event){
@@ -261,7 +168,6 @@
 				el: $("#container"),
 				objects: [],
 				targets :  {
-						sphere: [], 
 						helix:[],
 					},
 
@@ -273,58 +179,48 @@
 				initialize: function(){
 					this.once("itemSelected", this.itemSelected, this);
 					this.once("subviewSelect", this.subviewSelected, this);
-					this.camera.position.z = 1800;
+					this.camera.position.z = 1350;
+					this.camera.position.y = 150;
 
 					this.render();
 
 					var vector = new THREE.Vector3();
 
-					/*for ( var i = 0, l = this.objects.length; i < l; i ++ ) {
+					for ( var i = 0, l = this.objects.length; i < l; i ++ ) {
 
-						var phi = Math.acos( -1 + ( 2 * i ) / l );
-						var theta = Math.sqrt( l * Math.PI ) * phi;
+						var phi = i * 0.175 + Math.PI;
 
 						var object = new THREE.Object3D();
-						var radius = 1000;
-						object.position.x = radius * Math.cos( theta ) * Math.sin( phi );
-						object.position.y = radius * Math.sin( theta ) * Math.sin( phi );
+						var radius = 1100;
+					
+						object.position.x = radius * Math.sin( phi );
+						//object.position.y = - ( i * 8 ) + 250;
+						object.position.y = 100;
 						object.position.z = radius * Math.cos( phi );
-
-						vector.copy( object.position ).multiplyScalar( 2);
+	
+						vector.copy( object.position );
+						vector.x *= 2;
+						vector.z *= 2;
 
 						object.lookAt( vector );
 
-						this.targets.sphere.push( object );
-					
-					}*/
-				for ( var i = 0, l = this.objects.length; i < l; i ++ ) {
+						this.targets.helix.push( object );
 
-					var phi = i * 0.175 + Math.PI;
-
-					var object = new THREE.Object3D();
-					var radius = 1100;
-					
-					object.position.x = radius * Math.sin( phi );
-					object.position.y = - ( i * 8 ) + 250;
-					object.position.z = radius * Math.cos( phi );
-
-					vector.copy( object.position );
-					vector.x *= 2;
-					vector.z *= 2;
-
-					object.lookAt( vector );
-
-					this.targets.helix.push( object );
-
-				}
+					}
 
 
 					this.renderer.setSize( window.innerWidth, window.innerHeight );
 					this.renderer.domElement.style.position = 'absolute';
 					this.el.appendChild(this.renderer.domElement);
+
 					this.controls = new THREE.TrackballControls( this.camera, this.renderer.domElement );
 					this.controls.rotateSpeed = 0.5;
 					this.controls.addEventListener( 'change', this.renderScene );
+
+					this.control=new helixTrackControls(this.camera,vector);
+					// for 20 u need 14
+					this.control.moveRight(14);
+
 					this.transform( this.targets.helix, 2000 );
 						
 				},
@@ -359,8 +255,6 @@
 				});
 				var x = [];
 				for ( var i = 0; i < this.objects.length; i ++ ) {
-
-					
 
 					var object = new THREE.Object3D();
 					object.position.x = ( ( i % 3 ) * 200 ) - 300;
@@ -421,7 +315,6 @@
 
 				transform: function(targets, duration){
 					TWEEN.removeAll();
-
 					for ( var i = 0; i < this.objects.length; i ++ ) {
 
 						var object = this.objects[ i ];

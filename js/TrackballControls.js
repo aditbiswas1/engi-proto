@@ -139,9 +139,14 @@ THREE.TrackballControls = function ( object, domElement ) {
 			var axis = ( new THREE.Vector3() ).crossVectors( _rotateStart, _rotateEnd ).normalize(),
 				quaternion = new THREE.Quaternion();
 
+			// ambusher disabling rotation on x and z axis
+			axis.z=axis.x=0;
+
+
 			angle *= _this.rotateSpeed;
 
 			quaternion.setFromAxisAngle( axis, -angle );
+
 
 			_eye.applyQuaternion( quaternion );
 			_this.object.up.applyQuaternion( quaternion );
@@ -164,7 +169,6 @@ THREE.TrackballControls = function ( object, domElement ) {
 	};
 
 	this.zoomCamera = function () {
-
 		if ( _state === STATE.TOUCH_ZOOM ) {
 
 			var factor = _touchZoomDistanceStart / _touchZoomDistanceEnd;
