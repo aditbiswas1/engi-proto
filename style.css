@@ -7,6 +7,7 @@ body {
 	margin: 0;
 	font-family: Arial;
 	overflow: hidden;
+	color:#000;
 }
 
 body:before { 
@@ -94,5 +95,11 @@ button:hover {
 button:active {
 	color: #000000;
 	background-color: rgba(0,255,255,0.75);
+}
+
+.searchEventsContainer{
+	position:fixed;
+	right:10px;
+	top:10px;
 }
 
