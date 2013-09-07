@@ -32,7 +32,7 @@ App.Views.EventView = Backbone.View.extend({
 		this.object =  new THREE.CSS3DObject( this.el );
 		this.el.style.backgroundColor = 'rgba(0,55,127,' + ( Math.random() * 0.5 + 0.25 ) + ')';
 		// setting text here
-		this.$el.html(this.model.toJSON().name+"<br /><br />"+this.model.toJSON().info);
+		this.$el.html(this.model.toJSON().name+"<br /><br />"+this.model.toJSON().info+'<div class="ribbon-wrapper-green"><div class="ribbon-green">NEW</div></div>');
 		// this will put elements in random positions
 		this.object.position.x = Math.random() * 4000 - 2000;
 		this.object.position.y = Math.random() * 4000 - 2000;
@@ -343,6 +343,10 @@ App.init = function(){
 
 } 
 
-
 App.init();
+
+window.onload=function(){
+	var colors = ["red", "blue", "green", "yellow", "brown", "black"];
+	$('#searchEvents').typeahead({source: colors});
+}
 
