@@ -8,17 +8,69 @@
 		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
-		<script src="js/jquery-1.10.1.min.js" ></script>
+		<script src="js/jquery.min.js" ></script>
 		<script src="bootstrap/js/bootstrap.js" ></script>
 		<script src="js/underscore-min.js"></script>
 		<script src="js/backbone-min.js"></script>
 		<script src="js/three.min.js"></script>
-		<script src="js/TrackballControls.js"></script>
 		<script src="js/helixTrackControls.js"></script>
+		<script src="js/TrackballControls.js"></script>
 		<script src="js/routes.js"></script>
 		<script src="js/tween.min.js"></script>
 		<script src="js/CSS3DRenderer.js"></script>
-		<div id="container"></div>
+		<script src="js/3script.js"></script>
+		<script src="js/system.js"></script>
+		<div id="container">
+			<table>
+				<tr>
+					<td rowspan="3">
+						<span id = "block1"><img id="img1" src="engineer.gif"/></span><br/>
+						<span id = "block2"><img id="img2" src="engineer.gif"/></span><br/>
+						<span id = "block3"><img id="img3" src="engineer.gif"/></span>
+					</td>
+					<td><span id = "block4"><img id="img4" src="engineer.gif"/></span></td>
+					<td><span id = "block5"><img id="img5" src="engineer.gif"/></span></td>				
+				</tr>
+				<tr>
+					<td colspan="2">
+						<span id = "block6"><img id="img6" src="engineer.gif"/></span>
+						<span id = "block7"><img id="img7" src="engineer.gif"/></span>					
+					</td>				
+				</tr>
+				<tr>
+					<td><span id = "block8"><img id="img8" src="engineer.gif"/></span></td>
+					<td><span id = "block9"><img id="img9" src="engineer.gif"/></span></td>				
+				</tr>			
+			</table>
+			<table>
+				<tr>
+					<td rowspan="3">
+						<span id = "block11"><img id="img11" src="engineer.gif"/></span><br/>
+						<span id = "block21"><img id="img21" src="engineer.gif"/></span><br/>
+						<span id = "block31"><img id="img31" src="engineer.gif"/></span>
+					</td>
+					<td><span id = "block41"><img id="img41" src="engineer.gif"/></span></td>
+					<td><span id = "block51"><img id="img51" src="engineer.gif"/></span></td>				
+				</tr>
+				<tr>
+					<td colspan="2">
+						<span id = "block61"><img id="img61" src="engineer.gif"/></span>
+						<span id = "block71"><img id="img71" src="engineer.gif"/></span>					
+					</td>				
+				</tr>
+				<tr>
+					<td><span id = "block81"><img id="img81" src="engineer.gif"/></span></td>
+					<td><span id = "block91"><img id="img91" src="engineer.gif"/></span></td>				
+				</tr>			
+			</table>
+		</div>
+		<p id = "mess" ></p>
+		<div id="menu">
+			<button id="table">TABLE</button>
+			<button id="sphere">SPHERE</button>
+			<button id="helix">HELIX</button>
+			<button id="grid">GRID</button>
+		</div>
 		<center>
 			<div class="header">
 				<div class="logo"></div>
@@ -28,6 +80,7 @@
 				<a class="btn btn-primary leftButton button4">Button1</a><br />
 			</div>
 		</center>
+
 		<div class="search">
 			<input type="text" id="leftTextbox" class="searchBox" placeholder="Search Events"/>
 		</div>
@@ -37,36 +90,20 @@
 		</div>
 
 		<script>
+/*
 publicEvents = [
 	{ name: "chemical events", info: "blah"},
 	{ name: "biz events", info: "blah-mech-blah"},
 	{ name: "mba events", info: "blah-mech-blah"},
 	{ name: "civil events", info: "blah-mech-blah"},
-	{ name: "electrical events", info: "blah-mech-blah"},
-	{ name: "simplineer", info: "blah-mech-blah"},
-	{ name: "general events", info: "blah-mech-blah"},
-	{ name: "astro events", info: "blah-mech-blah"},
-	{ name: "online events", info: "blah-mech-blah"},
-	{ name: "gaming events", info: "blah-mech-blah"},
-	{ name: "mining events", info: "blah-mech-blah"},
-	{ name: "metallugry events", info: "blah-mech-blah"},
-	{ name: "comp events", info: "blah-mech-blah"},
-	{ name: "mech events", info: "blah-mech-blah"},
-	{ name: "tech speak", info: "blah-mech-blah"},
-	{ name: "campus ambassador", info: "blah-mech-blah"},
-	{ name: "technites", info: "blah-mech-blah"},
-	{ name: "engi connect", info: "blah-mech-blah"},
-	{ name: "workshops", info: "blah-mech-blah"},
-	{ name: "sce", info: "blah-mech-blah"},
 	];
 
 subevents = [
 	{name: "subEvent1", info: "blah blah this is subevent"},
-	{name: "subEvent2", info: "blah blah this is subevent2"},
-	{name: "subEvent3", info: "blah blah this is subevent3"},
 	{name: "subEvent4", info: "blah blah this is subevent4"},
 ];
+*/
 		</script>
-		<script src="js/App.js"></script>
+	<!--<script src="js/App.js"></script> -->
 	</body>
 </html>

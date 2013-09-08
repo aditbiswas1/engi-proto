@@ -345,7 +345,5 @@ App.init = function(){
 App.init();
 
 window.onload=function(){
-	var colors = ["Mech Events", "Engineer", "Mathematica", "yellow", "brown", "black"];
-	$('.searchBox').typeahead({source: colors});
 }
 
