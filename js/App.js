@@ -137,7 +137,6 @@ App.Views.EventsCollectionView = Backbone.View.extend({
 
 			var object = new THREE.Object3D();
 			var radius = 1100;
-		
 			object.position.x = radius * Math.sin( phi );
 			//object.position.y = - ( i * 8 ) + 250;
 			object.position.y = 100;
@@ -346,7 +345,7 @@ App.init = function(){
 App.init();
 
 window.onload=function(){
-	var colors = ["red", "blue", "green", "yellow", "brown", "black"];
-	$('#searchEvents').typeahead({source: colors});
+	var colors = ["Mech Events", "Engineer", "Mathematica", "yellow", "brown", "black"];
+	$('.searchBox').typeahead({source: colors});
 }
 

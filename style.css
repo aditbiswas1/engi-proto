@@ -1,3 +1,9 @@
+@font-face {
+  font-family: 'windows';
+  font-style: normal;
+  font-weight: 300;
+  src: url("windows.woff") format('woff');
+}
 html, body {
 	height: 100%;
 }
@@ -5,7 +11,7 @@ html, body {
 body {
 	background: url(images/straws.png) repeat;
 	margin: 0;
-	font-family: Arial;
+	font-family: ubuntu;
 	overflow: hidden;
 	color:#000;
 }
@@ -107,8 +113,8 @@ button:active {
 	top:0px;
 	width:100%;
 	height:60px;
-	background:#222;
-	opacity:0.8;
+	background:#000;
+	opacity:0.9;
 	color:#fff;
    	-webkit-box-shadow: 0px 0px 10px rgba(0,0,0,.8);
    	-moz-box-shadow: 0px 0px 10px rgba(0,0,0,.8);
@@ -122,10 +128,15 @@ button:active {
 	border-width: 100px 100px 0 100px;
 	border-color: #007bff transparent transparent transparent;
 }
-.btn{
-   	-webkit-box-shadow: 0px 0px 10px #007bff;
-   	-moz-box-shadow: 0px 0px 10px  #007bff;
-   	box-shadow: 0px 0px 10px #007bff;
+.btn-success{
+   	-webkit-box-shadow: 0px 0px 10px green;
+   	-moz-box-shadow: 0px 0px 10px  green;
+   	box-shadow: 0px 0px 10px green;
+}
+.btn-primary{
+   	-webkit-box-shadow: 0px 0px 10px #0074cc;
+   	-moz-box-shadow: 0px 0px 10px  #0074cc;
+   	box-shadow: 0px 0px 10px #0074cc;
 }
 .header .button1{
 	margin-left:-180px;
@@ -168,16 +179,23 @@ button:active {
 }
 
 .footer{
+	padding-top:10px;
 	position:fixed;
 	bottom:0px;
 	width:100%;
-	height:80px;
-	background:#222;
-	opacity:0.8;
+	height:30px;
+	background:#000;
+	opacity:0.9;
 	color:#fff;
    	-webkit-box-shadow: 0px 0px 10px rgba(0,0,0,.8);
    	-moz-box-shadow: 0px 0px 10px rgba(0,0,0,.8);
    	box-shadow: 0px 0px 10px rgba(0,0,0,.8);
+}
+.footer .social{
+	position:fixed;
+	bottom:5px;
+	left:5px;
+	border: 1px solid #ffffff;
 }
 /*
 usage:

@@ -140,7 +140,7 @@ THREE.TrackballControls = function ( object, domElement ) {
 				quaternion = new THREE.Quaternion();
 
 			// ambusher disabling rotation on x and z axis
-			axis.z=axis.x=0;
+			//axis.z=axis.x=0;
 
 
 			angle *= _this.rotateSpeed;
