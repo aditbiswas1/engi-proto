@@ -345,7 +345,6 @@ THREE.TrackballControls = function ( object, domElement ) {
 	}
 
 	function mousedown( event ) {
-		console.log("mousedown");
 
 		if ( _this.enabled === false ) return;
 
@@ -378,7 +377,7 @@ THREE.TrackballControls = function ( object, domElement ) {
 	}
 
 	function mousemove( event ) {
-		console.log("mousedown");
+
 		if ( _this.enabled === false ) return;
 
 		event.preventDefault();
@@ -401,7 +400,6 @@ THREE.TrackballControls = function ( object, domElement ) {
 	}
 
 	function mouseup( event ) {
-		console.log("mouseup");
 
 		if ( _this.enabled === false ) return;
 
